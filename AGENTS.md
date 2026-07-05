@@ -65,7 +65,7 @@ contains keys/tokens).
 These are global Antigravity custom commands (not project-local skills) —
 they work automatically in any project cloned from this template:
 - Start of session: `run session-start` — reads this file + memory-decisions.md, checks git status, aligns context, and creates `.agents/.session-active` so auto-memory knows this was a real working session.
-- End of session: `run auto-memory` (also runs automatically via the Stop hook, but ONLY if `.agents/.session-active` exists — i.e. only if you ran session-start first) — diffs the session, appends a dated entry to memory-decisions.md, updates this file if a convention changed, syncs to Mem0 if connected.
+- End of session: `run auto-memory` — manual only. Automatic firing via the Stop hook does not work (confirmed broken — the hook is never invoked by Antigravity, see memory-decisions.md for the verification method). You must type the command yourself before closing the thread. Diffs the session, appends a dated entry to memory-decisions.md, updates this file if a convention changed, syncs to Mem0 if connected.
 - New project: `run bootstrap-project` — copies this template from `~/Templates/antigravity-blueprint/`, detects the stack, and fills in this file automatically.
 - Casual/chat threads: if you never run `session-start`, no marker exists, and the Stop hook does nothing — brainstorming and quick questions don't get logged as project decisions.
 

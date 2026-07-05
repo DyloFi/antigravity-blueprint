@@ -5,8 +5,10 @@
 
 MARKER=".agents/.session-active"
 
-# Consume stdin so Antigravity's hook pipeline doesn't hang waiting for it
-cat > /dev/null
+# Consume stdin safely without hanging if it is a pipe/redirect
+if [ ! -t 0 ]; then
+  read -t 1 -r -d '' _ || true
+fi
 
 if [ -f "$MARKER" ]; then
   rm -f "$MARKER"
