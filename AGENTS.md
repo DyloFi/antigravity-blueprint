@@ -62,12 +62,14 @@ contains keys/tokens).
   before asking the user to re-explain something.
 
 ## Session Protocol
-These are global Antigravity custom commands (not project-local skills) —
-they work automatically in any project cloned from this template:
-- Start of session: `run session-start` — reads this file + memory-decisions.md, checks git status, aligns context, and creates `.agents/.session-active` so auto-memory knows this was a real working session.
-- End of session: `run auto-memory` — manual only. Automatic firing via the Stop hook does not work (confirmed broken — the hook is never invoked by Antigravity, see memory-decisions.md for the verification method). You must type the command yourself before closing the thread. Diffs the session, appends a dated entry to memory-decisions.md, updates this file if a convention changed, syncs to Mem0 if connected.
-- New project: `run bootstrap-project` — copies this template from `~/Templates/antigravity-blueprint/`, detects the stack, and fills in this file automatically.
-- Casual/chat threads: if you never run `session-start`, no marker exists, and the Stop hook does nothing — brainstorming and quick questions don't get logged as project decisions.
+These now live as real command files in `.agents/commands/` (not global-only
+config), so the pipeline is portable across tools, not tied to one machine's
+Antigravity setup:
+- Start of session: `run session-start` (`.agents/commands/session-start.md`) — reads this file + memory-decisions.md, checks git status, aligns context, and creates `.agents/.session-active` so auto-memory knows this was a real working session.
+- End of session: `run auto-memory` (`.agents/commands/auto-memory.md`) — manual only. There is no working Stop-hook trigger — the previous hook-based attempt was confirmed broken and has been removed (see 2026-07-05 and 2026-07-06 memory-decisions.md entries). You must run this yourself before closing the thread. Diffs the session, appends a dated entry to memory-decisions.md, runs `scope-check`, updates this file if a convention changed, syncs to Mem0 if connected.
+- New project: `run bootstrap-project` (`.agents/commands/bootstrap-project.md`) — copies this template, detects the stack, and fills in this file automatically.
+- Mid-session drift check: `run scope-check` (`.agents/commands/scope-check.md`) — runs automatically as the last step of auto-memory; compares the session's diff against Decided/Deferred and flags anything undeclared before it gets logged as settled.
+- Casual/chat threads: if you never run `session-start`, no marker exists — brainstorming and quick questions don't get logged as project decisions.
 
 ## Full Pipeline (for new/extending scope)
 1. `run bootstrap-project` — stack + memory skeleton
@@ -78,7 +80,10 @@ they work automatically in any project cloned from this template:
    question per spike, output is a brief in `.agents/research/`
 4. `run generate-agent-team` — gated on zero blocking Open Questions;
    proposes smallest viable agent team, confirmed by you before writing
-5. `run session-start` / build / `run auto-memory` — normal working loop
+5. `run session-start` → for each feature/fix, `run task-loop` (PLAN →
+   IMPLEMENT → VERIFY → CRITIQUE → REFLECT, uses `compose-context`
+   internally) → `run auto-memory` at session end (which runs
+   `scope-check`) — normal working loop
 6. Scope grows → back to step 2 for the new increment only
 
 Check `.agents/pipeline-status.md` any time you're unsure what stage this

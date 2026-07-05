@@ -20,6 +20,11 @@ Valid STATUS values:
   not-started | in-progress | blocked | complete
 -->
 
+## Current Task
+<!-- Written by task-loop.md at PLAN, cleared at DONE. Empty = no task
+     currently in flight; safe to start a new one or treat IDLE. -->
+(none in flight)
+
 ## Active Research Questions (BLOCKING generate-agent-team)
 <!-- One line per open technical question currently being spiked.
      Remove the line once its research-spike brief is confirmed and the
@@ -28,9 +33,12 @@ Valid STATUS values:
 
 ## Milestone History
 <!-- Append one line per completed milestone. Newest at top. -->
-- (none yet)
+- [2026-07-06] Stage 1 core loop added: task-loop + compose-context.
+- [2026-07-06] Pipeline commands (session-start, auto-memory, bootstrap-project) ported into `.agents/commands/`; added `scope-check`; removed broken Stop hook.
 
 ## Next Action
 <!-- Written in plain language by whichever command last ran, so the next
      session (or you, re-reading this cold) knows exactly what to do next. -->
-Run `bootstrap-project` to initialize this workspace.
+Run `bootstrap-project` on a real target (e.g. FretNotTheory rebuild),
+then use `task-loop` for the first real feature to see if PLAN/CRITIQUE
+actually earn their keep before building stage 2 (memory redesign).

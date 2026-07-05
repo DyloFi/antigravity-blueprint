@@ -18,9 +18,10 @@ antigravity-blueprint/
     └── memory-decisions.md        <- warm memory: append-only decision log
 ```
 
-Session logic (`session-start`, `auto-memory`) and project bootstrapping
-(`bootstrap-project`) live as **global custom commands** in Antigravity, not
-as files in this repo — see "Daily workflow" below.
+Session logic (`session-start`, `auto-memory`, `scope-check`) and project
+bootstrapping (`bootstrap-project`) live as real command files in
+`.agents/commands/`, alongside `define-concept`, `research-spike`, and
+`generate-agent-team` — see "Daily workflow" below.
 
 ## First-time setup (per new project cloned from this template)
 
