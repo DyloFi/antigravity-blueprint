@@ -24,10 +24,31 @@ Replace `[PROJECT NAME]` and `[PROJECT DESCRIPTION]` with real values —
 ask the user if not obvious from context (README, package.json name
 field, directory name).
 
-## Step 4 — Delete the template example
-Remove the `[TEMPLATE]` example entry from `.agents/memory-decisions.md`
-if this is a genuinely new project (leave it if bootstrapping is being
-re-run on an existing project that already has real entries).
+## Step 4 — Reset memory files for the new project (mandatory, not judgment-based)
+The template repo you're copying from is itself a working project — it
+accumulates real `memory-decisions.md` entries and `pipeline-status.md`
+milestone history as it gets improved. None of that belongs in a project
+bootstrapped from it; carrying it over creates false provenance (a new
+project's memory log claiming decisions it never made). This step is
+mechanical, run every time, regardless of what the template currently
+contains:
+
+1. Overwrite `.agents/memory-decisions.md` with only its header block
+   (the "Evolving Project Decisions & Lessons" title + format
+   instructions) plus one line: `(no entries yet — this project's first
+   real session will start the log)`. Delete every dated entry and the
+   `[TEMPLATE]` example, unconditionally.
+2. In `.agents/pipeline-status.md`, clear the `## Milestone History`
+   section back to `- (none yet)`. Clear `## Current Task` back to
+   `(none in flight)`. Clear `## Active Research Questions` back to
+   `- (none)`.
+3. In `AGENTS.md`, confirm the "Current Milestone Scope" section
+   (Decided/Deferred/Open Questions) is still the untouched
+   `(none yet)` template state — if the source template has somehow
+   accumulated real entries there too, reset it the same way.
+
+Do this before Step 3's placeholder fill-in, not after — it's easy to
+forget once the project starts feeling "real."
 
 ## Step 5 — Update pipeline-status.md
 - STAGE: define-concept
