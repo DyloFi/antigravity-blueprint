@@ -12,7 +12,7 @@ if [ -f "$MARKER" ]; then
   rm -f "$MARKER"
   cat <<EOF
 {
-  "decision": "deny",
+  "decision": "block",
   "reason": "This thread ran session-start. Before actually ending, run auto-memory: git diff + git log -5, append a dated entry to .agents/memory-decisions.md, update AGENTS.md if a convention changed, run a scope-check against Decided/Deferred scope, update .agents/pipeline-status.md, and report the result. Then stop."
 }
 EOF
