@@ -2,6 +2,9 @@
 
 Personal starter template: Next.js + TypeScript + TailwindCSS + shadcn/ui +
 Supabase, plus a file-based agent memory system for use with Antigravity 2.0.
+The agent layer is being shaped into Antigravity Blueprint v2: a portable,
+model-agnostic cognitive loop where memory, context composition, explicit
+state, critique, and observability matter more than any one LLM.
 
 ## What's in here
 
@@ -15,6 +18,10 @@ antigravity-blueprint/
 │   └── utils.ts                   <- cn() helper for shadcn components
 ├── .env.local.example             <- copy to .env.local and fill in
 └── .agents/
+    ├── core/                      <- v2 cognitive module contracts
+    ├── docs/                      <- architecture + observability docs
+    ├── schemas/                   <- memory/state/knowledge schemas
+    ├── memory/                    <- future typed memory stores
     └── memory-decisions.md        <- warm memory: append-only decision log
 ```
 
@@ -22,6 +29,11 @@ Session logic (`session-start`, `auto-memory`, `scope-check`) and project
 bootstrapping (`bootstrap-project`) live as real command files in
 `.agents/commands/`, alongside `define-concept`, `research-spike`, and
 `generate-agent-team` — see "Daily workflow" below.
+
+Start with `.agents/docs/cognitive-architecture.md` for the v2 design. The
+new `.agents/core/` and `.agents/memory/` folders are contracts first; they are
+not an invitation to add speculative automation before real usage shows where
+the loop hurts.
 
 ## First-time setup (per new project cloned from this template)
 

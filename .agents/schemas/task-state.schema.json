@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "task-state.schema.json",
+  "title": "Task State",
+  "type": "object",
+  "required": ["task", "state", "updated_at"],
+  "properties": {
+    "task": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string",
+      "enum": ["IDLE", "PLAN", "IMPLEMENT", "VERIFY", "CRITIQUE", "REFLECT", "STORE", "DONE"]
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "plan": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "changed_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "verification": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "reflection": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

@@ -6,7 +6,7 @@ description: Run for each distinct unit of work within a session (roughly one fe
 
 ## States
 ```
-IDLE → PLAN → IMPLEMENT → VERIFY → CRITIQUE → REFLECT → DONE
+IDLE → PLAN → IMPLEMENT → VERIFY → CRITIQUE → REFLECT → STORE → DONE
                  ↑____________________|
                  (VERIFY or CRITIQUE failure loops back to IMPLEMENT)
 ```
@@ -69,6 +69,18 @@ reason an alternative was rejected. This is a candidate line for
 `auto-memory` to pick up at session end, not a new file — hold it in the
 response, don't write it to disk yet (auto-memory does that once per
 session, not once per task, or memory-decisions.md turns into noise).
+Update STATE: STORE.
+
+## STORE
+Decide whether the reflection belongs in durable memory:
+- routine implementation detail -> do not store
+- project convention or repeated gotcha -> candidate for
+  `.agents/memory-decisions.md` via `auto-memory`
+- future typed memory -> must match `.agents/schemas/memory-record.schema.json`
+
+For now, STORE normally means "hold the candidate for auto-memory." Do not
+write task-level memory files until stage 2 has been exercised and explicitly
+approved.
 Update STATE: DONE.
 
 ## Step Final — Clear the task

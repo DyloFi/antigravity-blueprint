@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "knowledge-edge.schema.json",
+  "title": "Knowledge Graph Edge",
+  "type": "object",
+  "required": ["from", "relationship", "to", "source", "created_at"],
+  "properties": {
+    "from": {
+      "type": "string"
+    },
+    "relationship": {
+      "type": "string",
+      "examples": ["uses", "depends-on", "decided-by", "supersedes", "belongs-to"]
+    },
+    "to": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["low", "medium", "high"],
+      "default": "medium"
+    }
+  },
+  "additionalProperties": false
+}

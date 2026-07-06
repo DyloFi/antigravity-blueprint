@@ -23,6 +23,11 @@
 - `/lib` — utilities, Supabase client, helpers
 - `/lib/supabase.ts` — single source of truth for the Supabase client
 - `.agents/` — memory system (see below), not app code
+- `.agents/core/` — v2 cognitive module contracts (planner, memory,
+  context, retrieval, state, reflection, critic, router, orchestration)
+- `.agents/schemas/` — portable schemas for future typed memory/state/graph
+  records
+- `.agents/docs/` — architecture and observability docs for the agent loop
 
 ## Build & Test Commands
 - Install: `pnpm install`
@@ -51,6 +56,8 @@ contains keys/tokens).
 ## Agent Guidelines & Anti-Patterns
 - Check `.agents/memory-decisions.md` before making architectural changes or
   re-deciding something that was already decided.
+- Check `.agents/docs/cognitive-architecture.md` before changing the agent
+  loop, memory layout, context rules, routing, critique, or pipeline commands.
 - Don't introduce a second UI kit, CSS framework, or state library — this
   project uses Tailwind + shadcn/ui and React state/hooks unless a
   memory-decisions.md entry says otherwise.
@@ -60,6 +67,9 @@ contains keys/tokens).
   made or a new convention is adopted.
 - If Mem0 (MCP) is connected, prefer querying it for cross-project patterns
   before asking the user to re-explain something.
+- Do not build automated retrieval, graph, or memory-consolidation code until
+  the core task-loop has been exercised on a real project and the friction is
+  logged. Add contracts first, executable automation second.
 
 ## Session Protocol
 These now live as real command files in `.agents/commands/` (not global-only
@@ -81,7 +91,7 @@ Antigravity setup:
 4. `run generate-agent-team` — gated on zero blocking Open Questions;
    proposes smallest viable agent team, confirmed by you before writing
 5. `run session-start` → for each feature/fix, `run task-loop` (PLAN →
-   IMPLEMENT → VERIFY → CRITIQUE → REFLECT, uses `compose-context`
+   IMPLEMENT → VERIFY → CRITIQUE → REFLECT → STORE, uses `compose-context`
    internally) → `run auto-memory` at session end (which runs
    `scope-check`) — normal working loop
 6. Scope grows → back to step 2 for the new increment only

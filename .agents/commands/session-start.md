@@ -8,6 +8,8 @@ description: Run at the start of every real working session (not casual/chat thr
 - Read `AGENTS.md` in full.
 - Read `.agents/memory-decisions.md`, most recent 5 entries minimum.
 - Read `.agents/pipeline-status.md` for current stage and Next Action.
+- Read `.agents/docs/cognitive-architecture.md` if the task touches the
+  agent loop, memory, context, routing, critique, or pipeline commands.
 
 ## Step 2 — Check git status
 Run: `git status --short` and `git log -3 --oneline`
@@ -19,6 +21,9 @@ don't assume they're yours or safe to ignore.
 - Last 1-2 decisions logged (from memory-decisions.md)
 - Any open/blocking questions (from AGENTS.md)
 - The Next Action line, verbatim
+- Any active contradiction between docs and files that would affect this
+  session (for example, legacy hook files still present despite a prior
+  decision saying hooks were removed)
 
 ## Step 4 — Mark this as a real session
 Create the marker file: `.agents/.session-active`

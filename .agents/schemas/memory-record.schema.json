@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "memory-record.schema.json",
+  "title": "Memory Record",
+  "type": "object",
+  "required": ["id", "type", "summary", "source", "created_at"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Stable unique identifier for the memory record."
+    },
+    "type": {
+      "type": "string",
+      "enum": ["working", "semantic", "episodic", "procedural", "knowledge", "archive"]
+    },
+    "summary": {
+      "type": "string",
+      "description": "Small extracted fact or lesson, not a transcript."
+    },
+    "source": {
+      "type": "object",
+      "required": ["kind", "reference"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["user", "file", "tool", "diff", "research", "external-service"]
+        },
+        "reference": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["low", "medium", "high"],
+      "default": "medium"
+    },
+    "related": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "superseded", "archived"],
+      "default": "active"
+    }
+  },
+  "additionalProperties": false
+}

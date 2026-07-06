@@ -25,7 +25,9 @@ it's not a task yet — go back to `task-loop`'s PLAN step and split it.
 4. Files this task will actually touch — read them now, not from memory
    of an earlier pass in this thread. Code drifts; assumptions about it
    shouldn't.
-5. Most recent relevant tool output only if this task is a continuation
+5. If the task touches the agent loop, read the relevant module contract
+   in `.agents/core/` and `.agents/docs/cognitive-architecture.md`.
+6. Most recent relevant tool output only if this task is a continuation
    of one that just ran (e.g. re-fixing a build error) — otherwise skip.
 
 ## Step 3 — Compression check
@@ -56,3 +58,11 @@ name at all, STOP — do not treat any entries in that file as this
 project's history until this is resolved. This is the check that would
 have caught cross-project confusion immediately instead of requiring a
 manual investigation.
+
+## Step 7 — Memory-store check
+If the plan would write into `.agents/memory/*`, `.agents/sessions/*`, or
+`.agents/knowledge/*`, confirm the write follows
+`.agents/schemas/memory-record.schema.json` or
+`.agents/schemas/knowledge-edge.schema.json`. If no schema fits, treat that
+as a design gap and stop before IMPLEMENT rather than inventing a one-off
+memory shape.

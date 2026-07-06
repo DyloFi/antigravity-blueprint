@@ -33,6 +33,8 @@ Valid STATUS values:
 
 ## Milestone History
 <!-- Append one line per completed milestone. Newest at top. -->
+- [2026-07-06] Blueprint v2 contracts added: core module boundaries, memory
+  store skeleton, schemas, and observability docs.
 - [2026-07-06] Stage 1 core loop added: task-loop + compose-context.
 - [2026-07-06] Pipeline commands (session-start, auto-memory, bootstrap-project) ported into `.agents/commands/`; added `scope-check`; removed broken Stop hook.
 

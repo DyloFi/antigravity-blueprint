@@ -8,6 +8,25 @@
 > - **Decision/Fix**: what was done
 > - **Note**: anything future-you needs to not repeat the mistake
 
+## [2026-07-06] Blueprint v2 contracts added without speculative automation
+- **Context**: A v2 architecture prompt reframed this template as a
+  model-agnostic cognitive architecture rather than a prompt library:
+  memory-first, context-as-cache, modular, observable, and staged so each
+  increment leaves the project usable.
+- **Decision/Fix**: Added `.agents/docs/cognitive-architecture.md`,
+  `.agents/docs/observability.md`, `.agents/core/*` module contracts,
+  `.agents/memory/*` store placeholders, `.agents/knowledge/`,
+  `.agents/sessions/`, and JSON schemas for memory records, task state,
+  and knowledge edges. Updated session-start, compose-context, task-loop,
+  auto-memory, scope-check, AGENTS.md, README.md, and pipeline-status.md
+  so the contracts are consulted during real work.
+- **Note**: This intentionally does not add retrieval automation, a graph
+  engine, or memory-consolidation code yet. Keep stage 2 schema-first until
+  the core task-loop has been used on a real target and logged friction
+  proves what executable behavior is needed. Also note the repo still
+  contains legacy hook files despite an older entry saying they were
+  removed; do not rely on hooks for durable behavior.
+
 ## [2026-07-06] Stage 1 core loop: task-loop, compose-context added
 - **Context**: The v2 architecture discussion called for an explicit
   per-task state machine (PLAN/IMPLEMENT/VERIFY/CRITIQUE/REFLECT) and a

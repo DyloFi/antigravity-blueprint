@@ -22,6 +22,10 @@ service connected. If anything like that happened, it goes in the dated
 entry as its own bullet — "every action should be explainable" includes
 infra actions, not just code.
 
+If this session touched `.agents/memory/*`, `.agents/knowledge/*`, or
+`.agents/sessions/*`, check that each new record cites provenance and follows
+the relevant schema in `.agents/schemas/`.
+
 ## Step 2 — Write the dated entry
 Append to `.agents/memory-decisions.md`, newest at top, using the
 existing format:
@@ -36,6 +40,10 @@ existing format:
 Only touch AGENTS.md if this session established or revised a
 project-wide convention (stack choice, directory rule, anti-pattern).
 Routine feature work does not require an AGENTS.md edit.
+
+If the convention is about the v2 agent loop, also update the relevant
+contract in `.agents/core/` or `.agents/docs/` so the architecture and command
+behavior do not drift apart.
 
 ## Step 4 — Run scope-check
 Run the `scope-check` command now (see `.agents/commands/scope-check.md`).

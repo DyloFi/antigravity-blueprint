@@ -25,6 +25,11 @@ item?
   work" and ask the user whether it should be added to Decided
   retroactively, logged as a deliberate one-off, or reverted.
 
+For agent architecture changes, also compare against
+`.agents/docs/cognitive-architecture.md`. If a change skips a staged build
+boundary (for example, adding retrieval automation before memory schemas have
+real data), flag it even if it is not listed in Deferred.
+
 ## Step 4 — Write the result
 Append the scope-check result as part of the same dated entry auto-memory
 is already writing to `.agents/memory-decisions.md` — do not create a
