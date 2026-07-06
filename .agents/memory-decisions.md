@@ -1,4 +1,5 @@
 # Evolving Project Decisions & Lessons
+<!-- project: antigravity-blueprint -->
 
 > Append-only. Newest entries at the top. One entry per decision/fix.
 > Format:
