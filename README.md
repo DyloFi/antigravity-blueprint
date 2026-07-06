@@ -22,6 +22,8 @@ antigravity-blueprint/
     ├── docs/                      <- architecture + observability docs
     ├── schemas/                   <- memory/state/knowledge schemas
     ├── memory/                    <- future typed memory stores
+    ├── architecture-decisions/     <- promoted long-lived decisions
+    ├── branches/                  <- optional branch-local memory
     └── memory-decisions.md        <- warm memory: append-only decision log
 ```
 
@@ -60,9 +62,13 @@ repo.
 2. **While working**: keep threads focused — start a new chat thread per
    feature/endpoint rather than letting one thread run for hundreds of turns.
 3. **End of session**: `run auto-memory`. Diffs the session's changes,
-   appends a dated entry to `memory-decisions.md`, updates `AGENTS.md` if a
+   runs pre-memory verification, appends a dated entry to
+   `memory-decisions.md` or branch memory, updates `AGENTS.md` if a
    project-wide convention changed, and syncs key facts to Mem0. Commit the
    markdown changes along with your code.
+
+When warm memory grows, run `compact-memory` to promote durable decisions into
+`.agents/architecture-decisions/` and archive stale session detail.
 
 ## Bootstrapping a brand new project from this template
 

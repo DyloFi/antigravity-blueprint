@@ -31,9 +31,10 @@ boundary (for example, adding retrieval automation before memory schemas have
 real data), flag it even if it is not listed in Deferred.
 
 ## Step 4 — Write the result
-Append the scope-check result as part of the same dated entry auto-memory
-is already writing to `.agents/memory-decisions.md` — do not create a
-separate file. Format:
+Append the scope-check result as part of the same memory entry auto-memory is
+already writing. If auto-memory chose branch memory, write it there. If
+auto-memory chose warm memory, write it to `.agents/memory-decisions.md`. Do
+not create a second entry just for scope-check. Format:
 ```
 - **Scope-check**: in-scope | flagged: [item] | undeclared: [item]
 ```

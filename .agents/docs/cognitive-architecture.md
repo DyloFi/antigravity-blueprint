@@ -37,7 +37,8 @@ USER
 1. **Core cognitive loop**: task-loop, compose-context, planner, state,
    critic, reflection, and observable checkpoints.
 2. **Memory system**: working, semantic, episodic, procedural, knowledge, and
-   archive stores with schemas and lifecycle rules.
+   archive stores with schemas, lifecycle rules, branch-local memory, and
+   compaction.
 3. **Retrieval and knowledge layer**: ranking, graph traversal, context
    budgeting, and memory selection.
 4. **Execution layer**: tool routing, MCP boundaries, checkpoints, recovery,
@@ -47,6 +48,7 @@ USER
 
 ## Current Implementation Status
 This repo currently implements stage 1 as command files and documentation. The
-stage 2 directory structure exists as contracts only. Do not build retrieval or
-knowledge-graph automation until the core loop has been exercised on a real
-project and its friction has been logged in `.agents/memory-decisions.md`.
+stage 2 directory structure and resilience contracts exist as documentation
+only. Do not build retrieval, knowledge-graph automation, mandatory hooks, or
+a custom MCP server until the core loop has been exercised on a real project
+and its friction has been logged in `.agents/memory-decisions.md`.

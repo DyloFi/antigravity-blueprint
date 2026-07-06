@@ -33,6 +33,8 @@ Valid STATUS values:
 
 ## Milestone History
 <!-- Append one line per completed milestone. Newest at top. -->
+- [2026-07-06] Resilience contracts added: pre-memory verification, memory
+  lifecycle, branch memory, compaction, and ADR promotion.
 - [2026-07-06] Blueprint v2 contracts added: core module boundaries, memory
   store skeleton, schemas, and observability docs.
 - [2026-07-06] Stage 1 core loop added: task-loop + compose-context.

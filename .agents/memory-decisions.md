@@ -8,6 +8,23 @@
 > - **Decision/Fix**: what was done
 > - **Note**: anything future-you needs to not repeat the mistake
 
+## [2026-07-06] Added resilience contracts for memory, branches, and verification
+- **Context**: External critique identified likely failure modes in the v2
+  architecture: merge conflicts in centralized memory, warm-memory bloat,
+  success memories written before verification, fragile manual compliance,
+  and eventual need for structured tool access.
+- **Decision/Fix**: Added `.agents/docs/memory-lifecycle.md`,
+  `.agents/commands/pre-memory-verify.md`,
+  `.agents/commands/compact-memory.md`, `.agents/branches/README.md`, and
+  `.agents/architecture-decisions/README.md`. Updated auto-memory to run
+  pre-memory verification before success logging, prefer branch-local memory
+  when appropriate, and recommend compaction as warm memory approaches 20
+  real entries.
+- **Note**: This remains non-destructive and manual-first: no mandatory Git
+  hooks, no automatic compaction, no custom MCP server yet. Optional aliases,
+  helper scripts, or MCP tools can come later once the manual contracts prove
+  their shape.
+
 ## [2026-07-06] Blueprint v2 contracts added without speculative automation
 - **Context**: A v2 architecture prompt reframed this template as a
   model-agnostic cognitive architecture rather than a prompt library:

@@ -28,6 +28,8 @@
 - `.agents/schemas/` — portable schemas for future typed memory/state/graph
   records
 - `.agents/docs/` — architecture and observability docs for the agent loop
+- `.agents/architecture-decisions/` — promoted long-lived decisions
+- `.agents/branches/` — optional branch-local memory before merge
 
 ## Build & Test Commands
 - Install: `pnpm install`
@@ -70,6 +72,8 @@ contains keys/tokens).
 - Do not build automated retrieval, graph, or memory-consolidation code until
   the core task-loop has been exercised on a real project and the friction is
   logged. Add contracts first, executable automation second.
+- Run `pre-memory-verify` before logging a successful `auto-memory` entry;
+  failed verification should be logged as a failed attempt, not success.
 
 ## Session Protocol
 These now live as real command files in `.agents/commands/` (not global-only
@@ -77,6 +81,7 @@ config), so the pipeline is portable across tools, not tied to one machine's
 Antigravity setup:
 - Start of session: `run session-start` (`.agents/commands/session-start.md`) — reads this file + memory-decisions.md, checks git status, aligns context, and creates `.agents/.session-active` so auto-memory knows this was a real working session.
 - End of session: `run auto-memory` (`.agents/commands/auto-memory.md`) — manual only. There is no working Stop-hook trigger — the previous hook-based attempt was confirmed broken and has been removed (see 2026-07-05 and 2026-07-06 memory-decisions.md entries). You must run this yourself before closing the thread. Diffs the session, appends a dated entry to memory-decisions.md, runs `scope-check`, updates this file if a convention changed, syncs to Mem0 if connected.
+- Memory compaction: `run compact-memory` (`.agents/commands/compact-memory.md`) — manual only, used when warm memory grows too large or decisions need promotion into `.agents/architecture-decisions/`.
 - New project: `run bootstrap-project` (`.agents/commands/bootstrap-project.md`) — copies this template, detects the stack, and fills in this file automatically.
 - Mid-session drift check: `run scope-check` (`.agents/commands/scope-check.md`) — runs automatically as the last step of auto-memory; compares the session's diff against Decided/Deferred and flags anything undeclared before it gets logged as settled.
 - Casual/chat threads: if you never run `session-start`, no marker exists — brainstorming and quick questions don't get logged as project decisions.
