@@ -27,7 +27,9 @@ it's not a task yet — go back to `task-loop`'s PLAN step and split it.
    shouldn't.
 5. If the task touches the agent loop, read the relevant module contract
    in `.agents/core/` and `.agents/docs/cognitive-architecture.md`.
-6. Most recent relevant tool output only if this task is a continuation
+6. If the task involves parallel agents, sub-agents, skills, plugins, MCP,
+   SDK harnesses, or worktrees, read `.agents/docs/agent-orchestration.md`.
+7. Most recent relevant tool output only if this task is a continuation
    of one that just ran (e.g. re-fixing a build error) — otherwise skip.
 
 ## Step 3 — Compression check
@@ -66,3 +68,13 @@ If the plan would write into `.agents/memory/*`, `.agents/sessions/*`, or
 `.agents/schemas/knowledge-edge.schema.json`. If no schema fits, treat that
 as a design gap and stop before IMPLEMENT rather than inventing a one-off
 memory shape.
+
+## Step 8 — Fanout check
+If the plan would spawn helpers or parallel agents, confirm:
+- no more than two helpers by default
+- each helper has a bounded task and verification target
+- file-editing helpers use separate worktrees unless the edits are read-only
+- the parent has a clear fan-in/synthesis step
+
+If any item is unclear, keep the task sequential or ask the user to approve a
+specific exception.

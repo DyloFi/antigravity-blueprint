@@ -35,8 +35,14 @@ and this command follows it.
 Before memory is written, compare the session diff against:
 - `AGENTS.md`
 - `.agents/docs/cognitive-architecture.md` when agent architecture changed
+- `.agents/docs/agent-orchestration.md` when helpers, sub-agents, worktrees,
+  skills, plugins, MCP, or SDK harnesses were involved
 - relevant `.agents/core/*/README.md` contracts
 
 If the diff violates a guideline, stop and either fix it or log the memory as
 an unresolved/failing attempt. Do not store a clean success narrative for work
 that knowingly violates the project map.
+
+The verification/critique role should be independent from implementation in
+spirit: it needs evidence from commands, diffs, screenshots, tests, or review
+criteria, not just the implementer's assertion that the work is done.

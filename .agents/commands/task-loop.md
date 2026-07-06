@@ -29,9 +29,13 @@ STATE: PLAN
 2. From the compressed context, write the concrete plan: what files
    change, what the smallest correct version looks like, what could go
    wrong. 3-6 bullets, not a design doc.
-3. If the plan reveals this is actually 2+ unrelated tasks, stop and say
+3. If the plan considers sub-agents or helper fanout, apply
+   `.agents/docs/agent-orchestration.md`: default to one orchestrator plus at
+   most two helpers, require a fan-in plan, and prefer worktrees for parallel
+   file edits.
+4. If the plan reveals this is actually 2+ unrelated tasks, stop and say
    so — split it, run task-loop separately for each.
-4. Update STATE: IMPLEMENT in pipeline-status.md.
+5. Update STATE: IMPLEMENT in pipeline-status.md.
 
 ## IMPLEMENT
 Do the work described in the plan. Nothing outside it — if something
@@ -56,6 +60,8 @@ plan:
 - Any edge case the plan didn't consider that's now visible in the
   actual code?
 - Is there a simpler version that does the same job?
+- Did verification/critique stay independent from implementation, or did the
+  implementer simply bless its own work without evidence?
 If critique finds a real problem, go back to IMPLEMENT (or PLAN, if the
 problem is in the approach). If critique is clean, say so briefly and
 move on — this is not a second full code review, it's a gut-check.

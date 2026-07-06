@@ -70,6 +70,11 @@ repo.
 When warm memory grows, run `compact-memory` to promote durable decisions into
 `.agents/architecture-decisions/` and archive stale session detail.
 
+For parallel agent work, prefer `prepare-worktree-agent` over multiple agents
+editing one folder. See `.agents/docs/agent-orchestration.md` and
+`.agents/docs/outside-setup-guide.md` for the Antigravity setup guide,
+including MCP, commands, memory, worktrees, and commit flow.
+
 ## Bootstrapping a brand new project from this template
 
 1. Make sure this template lives at `~/Templates/antigravity-blueprint/`

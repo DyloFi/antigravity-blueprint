@@ -42,7 +42,8 @@ USER
 3. **Retrieval and knowledge layer**: ranking, graph traversal, context
    budgeting, and memory selection.
 4. **Execution layer**: tool routing, MCP boundaries, checkpoints, recovery,
-   and external action logs.
+   bounded helper fanout, worktree isolation, MCP boundaries, checkpoints,
+   recovery, and external action logs.
 5. **Developer experience**: diagnostics, examples, migration guides, tests,
    and reference implementations.
 
@@ -52,3 +53,8 @@ stage 2 directory structure and resilience contracts exist as documentation
 only. Do not build retrieval, knowledge-graph automation, mandatory hooks, or
 a custom MCP server until the core loop has been exercised on a real project
 and its friction has been logged in `.agents/memory-decisions.md`.
+
+For sub-agent and parallel-worker decisions, follow
+`.agents/docs/agent-orchestration.md`: keep fanout bounded, prefer worktrees
+for parallel file edits, and treat unverified Antigravity internals as research
+questions rather than project facts.

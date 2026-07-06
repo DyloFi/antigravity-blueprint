@@ -8,6 +8,35 @@
 > - **Decision/Fix**: what was done
 > - **Note**: anything future-you needs to not repeat the mistake
 
+## [2026-07-06] Reframed outside setup as Antigravity onboarding
+- **Context**: The setup guide still described work as "outside Codex edits,"
+  but this template is meant for Antigravity users who may be forking the
+  blueprint without knowing which MCPs, skills, rules, or commands are needed.
+- **Decision/Fix**: Rewrote `.agents/docs/outside-setup-guide.md` as a
+  layman-friendly Antigravity setup guide covering fork/clone, pnpm setup,
+  MCP recommendations, built-in command/rule files, daily workflow, worktrees,
+  memory compaction, commit/push flow, and what not to automate yet.
+- **Note**: No custom MCP server, extra skill package, plugin, or mandatory
+  Git hook is required to use the blueprint. Mem0 is recommended for
+  cross-project memory; Supabase MCP is recommended only for projects that use
+  Supabase.
+
+## [2026-07-06] Imported verified orchestration patterns, not unverified Antigravity internals
+- **Context**: Research on Antigravity sub-agents mixed verified platform
+  facts with unverified claims about skills, plugin paths, Ultra gating, and
+  silent throttling.
+- **Decision/Fix**: Added `.agents/docs/agent-orchestration.md`,
+  `.agents/commands/prepare-worktree-agent.md`, and
+  `.agents/docs/outside-setup-guide.md`. Updated task-loop,
+  compose-context, pre-memory-verify, core orchestration/router contracts,
+  README.md, AGENTS.md, observability docs, and pipeline status to enforce a
+  bounded fanout default, quota-aware planning, worktree isolation for
+  parallel file edits, and independent verification/critique.
+- **Note**: Do not encode claims like `/plugins/agents/` paths, mandatory
+  plugin use, hard Ultra gating, or silent 429 serialization as facts until
+  they are verified from official docs or local testing. Treat those as
+  research questions.
+
 ## [2026-07-06] Added resilience contracts for memory, branches, and verification
 - **Context**: External critique identified likely failure modes in the v2
   architecture: merge conflicts in centralized memory, warm-memory bloat,

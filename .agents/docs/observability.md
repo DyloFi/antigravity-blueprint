@@ -13,6 +13,8 @@ Every meaningful agent action should be answerable later:
 - `.agents/memory-decisions.md` records durable decisions and lessons.
 - `.agents/branches/` records branch-local memory before merge.
 - `.agents/architecture-decisions/` records promoted long-lived decisions.
+- `.agents/docs/agent-orchestration.md` records fanout and helper-agent
+  boundaries.
 - `.agents/sessions/` is reserved for future per-session traces.
 - `.agents/memory/*` is reserved for future typed memory stores.
 

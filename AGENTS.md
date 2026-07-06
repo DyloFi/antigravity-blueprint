@@ -74,6 +74,8 @@ contains keys/tokens).
   logged. Add contracts first, executable automation second.
 - Run `pre-memory-verify` before logging a successful `auto-memory` entry;
   failed verification should be logged as a failed attempt, not success.
+- Keep helper-agent fanout bounded: one orchestrator plus at most two helpers
+  by default; use worktrees for parallel file edits.
 
 ## Session Protocol
 These now live as real command files in `.agents/commands/` (not global-only
@@ -82,6 +84,7 @@ Antigravity setup:
 - Start of session: `run session-start` (`.agents/commands/session-start.md`) — reads this file + memory-decisions.md, checks git status, aligns context, and creates `.agents/.session-active` so auto-memory knows this was a real working session.
 - End of session: `run auto-memory` (`.agents/commands/auto-memory.md`) — manual only. There is no working Stop-hook trigger — the previous hook-based attempt was confirmed broken and has been removed (see 2026-07-05 and 2026-07-06 memory-decisions.md entries). You must run this yourself before closing the thread. Diffs the session, appends a dated entry to memory-decisions.md, runs `scope-check`, updates this file if a convention changed, syncs to Mem0 if connected.
 - Memory compaction: `run compact-memory` (`.agents/commands/compact-memory.md`) — manual only, used when warm memory grows too large or decisions need promotion into `.agents/architecture-decisions/`.
+- Parallel worktree: `run prepare-worktree-agent` (`.agents/commands/prepare-worktree-agent.md`) — optional, prepares isolated worktree tasks and branch-local memory.
 - New project: `run bootstrap-project` (`.agents/commands/bootstrap-project.md`) — copies this template, detects the stack, and fills in this file automatically.
 - Mid-session drift check: `run scope-check` (`.agents/commands/scope-check.md`) — runs automatically as the last step of auto-memory; compares the session's diff against Decided/Deferred and flags anything undeclared before it gets logged as settled.
 - Casual/chat threads: if you never run `session-start`, no marker exists — brainstorming and quick questions don't get logged as project decisions.
