@@ -98,3 +98,8 @@ project is at or what to run next.
 
 ### Open Questions (BLOCKING)
 - (none yet)
+
+## System Dependencies
+<!-- Homebrew-installed tools this project needs outside node_modules.
+     Empty = pure JS project, folder delete is a full clean slate. -->
+- (none yet)
