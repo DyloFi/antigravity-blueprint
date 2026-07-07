@@ -1,0 +1,16 @@
+capability: database
+name: Database / Schema
+owns: >
+  Supabase schema, migrations, RLS policies, and the shape of data at
+  rest. Single source of truth for what a row/table looks like.
+never_touches: >
+  Must never modify UI components or client-side rendering logic.
+trigger: >
+  Task description involves a new table, column, migration, index, or RLS
+  policy change.
+consult_before: >
+  security capability for any policy that gates access by user identity
+  or role, before finalizing RLS rules.
+verification: >
+  CRITIQUE confirms a migration exists for the change and RLS was
+  explicitly considered (enabled or explicitly deferred with a reason).

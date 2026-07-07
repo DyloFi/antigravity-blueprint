@@ -30,6 +30,18 @@
 - `.agents/docs/` — architecture and observability docs for the agent loop
 - `.agents/architecture-decisions/` — promoted long-lived decisions
 - `.agents/branches/` — optional branch-local memory before merge
+- `blueprint/` — non-destructive extension layer; wires `agent-team.md`
+  and `.agents/research/` back into the ongoing loop (see
+  `blueprint/README.md`). `.agents/` itself is never modified beyond a
+  few small additive hooks pointing at this folder.
+- `blueprint/capabilities/` — queryable specialist registry (owns/
+  boundary/trigger); generic starter set until `generate-agent-team` runs
+- `blueprint/routing/` — the PLAN-step logic that matches a task to a
+  capability
+- `blueprint/research/` — mid-task research trigger + how findings get
+  folded back into future tasks' context
+- `blueprint/state/knowledge-index.json` — queryable index over confirmed
+  `.agents/research/` briefs
 
 ## Build & Test Commands
 - Install: `pnpm install`
@@ -76,6 +88,11 @@ contains keys/tokens).
   failed verification should be logged as a failed attempt, not success.
 - Keep helper-agent fanout bounded: one orchestrator plus at most two helpers
   by default; use worktrees for parallel file edits.
+- Before routing or delegating a task, consult `blueprint/capabilities/` +
+  `.agents/agent-team.md` via `blueprint/routing/router-protocol.md` —
+  don't invent ad hoc ownership. If a genuine research unknown blocks a
+  task mid-loop, follow `blueprint/research/research-integration.md`
+  rather than guessing or silently deferring it.
 
 ## Session Protocol
 These now live as real command files in `.agents/commands/` (not global-only

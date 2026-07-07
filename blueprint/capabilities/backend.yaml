@@ -1,0 +1,17 @@
+capability: backend
+name: Backend / Server Logic
+owns: >
+  API routes, server-side business logic, and integration code outside
+  the database schema itself (e.g. app/api/**, server actions, lib
+  helpers that call external services).
+never_touches: >
+  Must never modify the database schema/migrations/RLS policies (owned by
+  database) or UI components (owned by frontend).
+trigger: >
+  Task description involves an API route, server action, webhook, or
+  server-side integration with an external service.
+consult_before: >
+  database capability's current schema if the task's data shape is
+  unclear; security capability if the route touches auth or secrets.
+verification: >
+  CRITIQUE confirms no schema files or component files were touched.

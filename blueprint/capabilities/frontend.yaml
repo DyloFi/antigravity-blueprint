@@ -1,0 +1,18 @@
+capability: frontend
+name: Frontend / UI
+owns: >
+  Pages and routes under app/, shared components under components/,
+  client-side state for UI concerns (toggles, layout, active
+  view/selection state).
+never_touches: >
+  Must never modify lib/supabase.ts internals, database schema, or
+  server-only business logic.
+trigger: >
+  Task description involves layout, a new page, a component, styling, or
+  client-side UI state.
+consult_before: >
+  backend capability's API shape if the UI needs new data from the
+  server; do not invent an endpoint contract unilaterally.
+verification: >
+  CRITIQUE confirms no server-only files (api routes, schema, service
+  role keys) were touched.

@@ -1,0 +1,19 @@
+capability: architect
+name: Architect / Planner
+owns: >
+  Turning a user goal into the smallest concrete plan; deciding which
+  other capability owns a given task during PLAN; deciding when scope has
+  grown enough to warrant re-running define-concept.
+never_touches: >
+  Must never write implementation code directly — routes to the owning
+  capability instead, or to itself only for cross-cutting structural
+  decisions (e.g. folder layout) with no other clear owner.
+trigger: >
+  Every task-loop PLAN step consults this capability first to perform the
+  routing decision itself, before any other capability is invoked.
+consult_before: >
+  .agents/agent-team.md (if it exists) takes priority over this generic
+  registry; AGENTS.md's Decided/Deferred list for scope boundaries.
+verification: >
+  CRITIQUE checks that the routing decision was recorded and that the
+  implementation stayed inside the routed capability's never_touches.
