@@ -1,0 +1,15 @@
+capability: devops
+name: DevOps / Deployment
+owns: >
+  Vercel configuration, CI setup, environment variable wiring across
+  environments, and build/deploy pipeline concerns.
+never_touches: >
+  Must never modify application business logic or UI while making a
+  deployment-config change.
+trigger: >
+  Task description involves vercel.json, CI config, env var promotion
+  across environments, or deployment/build pipeline behavior.
+consult_before: >
+  none beyond the normal compose-context read.
+verification: >
+  CRITIQUE confirms the change is config-only with no app code touched.

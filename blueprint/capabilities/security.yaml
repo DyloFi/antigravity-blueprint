@@ -1,0 +1,16 @@
+capability: security
+name: Security / Auth
+owns: >
+  Authentication flows, RLS policy review, secrets and environment
+  variable handling, and anything touching who can access what.
+never_touches: >
+  Must never make cosmetic UI changes or unrelated business logic changes
+  while reviewing a security-relevant change.
+trigger: >
+  Task description involves auth, session handling, RLS, API keys, env
+  vars, or user permission/role logic.
+consult_before: >
+  database capability's schema for any table the policy applies to.
+verification: >
+  CRITIQUE confirms no secret was hardcoded or logged, and RLS was
+  verified against at least one non-owner-role test case.

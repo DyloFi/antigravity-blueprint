@@ -1,0 +1,19 @@
+capability: researcher
+name: Researcher
+owns: >
+  Resolving open technical or feasibility unknowns — both ones flagged by
+  define-concept as type "research", and ones that surface mid-task
+  during PLAN or IMPLEMENT (see ../research/research-integration.md).
+never_touches: >
+  Must never write production implementation code; output is a brief in
+  .agents/research/, never a direct code change.
+trigger: >
+  An Open Question tagged type: research, or a genuine unknown (not a
+  syntax lookup) surfacing during IMPLEMENT that blocks the current plan.
+consult_before: >
+  blueprint/state/knowledge-index.json — check whether this question (or
+  a close variant) has already been answered before starting new research.
+verification: >
+  research-spike.md's existing Step 4 confirmation gate: the user must
+  confirm the brief before it counts as usable knowledge. Never
+  self-promoted by the agent.

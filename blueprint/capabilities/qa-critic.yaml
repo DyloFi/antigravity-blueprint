@@ -1,0 +1,19 @@
+capability: qa-critic
+name: QA / Critic
+owns: >
+  The task-loop VERIFY and CRITIQUE states themselves — running
+  verify.md, and checking the finished work against its own plan
+  independently of whoever implemented it.
+never_touches: >
+  Must never modify the implementation to "fix" it directly during
+  CRITIQUE — a real problem found here sends the task back to IMPLEMENT
+  or PLAN, it doesn't get patched in place by the critic.
+trigger: >
+  Automatically at the VERIFY and CRITIQUE states of every task-loop run,
+  regardless of which capability owned IMPLEMENT.
+consult_before: >
+  The plan written at PLAN and the routed capability's never_touches, to
+  check both were respected.
+verification: >
+  N/A — this capability is itself part of verification. Its own output is
+  checked only by the human confirming the task is actually DONE.

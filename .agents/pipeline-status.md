@@ -33,6 +33,13 @@ Valid STATUS values:
 
 ## Milestone History
 <!-- Append one line per completed milestone. Newest at top. -->
+- [2026-07-07] `blueprint/` layer added: capability registry (8 generic
+  roles), router protocol (PLAN now re-consults agent-team.md/capabilities
+  instead of routing once and forgetting), and research integration
+  (mid-task research trigger + knowledge-index.json so `.agents/research/`
+  briefs are actually read by future tasks). Small additive hooks in
+  task-loop.md, compose-context.md, generate-agent-team.md,
+  research-spike.md — nothing in `.agents/` removed or replaced.
 - [2026-07-06] Agent orchestration contracts added: fanout budget,
   worktree-agent preparation, independent evaluation, and outside setup guide.
 - [2026-07-06] Resilience contracts added: pre-memory verification, memory
